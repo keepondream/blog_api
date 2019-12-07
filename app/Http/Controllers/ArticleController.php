@@ -25,7 +25,7 @@ class ArticleController extends Controller
         $page = intval($page);
         $pagesize = intval($pagesize);
         if ($page >= 0 && $pagesize > 0) {
-            return Article::orderBy('updated_at','DESC')->skip($page * $pagesize)->take($pagesize)->get();
+            return Article::with('category')->orderBy('updated_at','DESC')->skip($page * $pagesize)->take($pagesize)->get();
         }
         return response()->json(null,404);
 //        return Article::all();
